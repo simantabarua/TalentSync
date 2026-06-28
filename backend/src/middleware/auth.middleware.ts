@@ -23,7 +23,7 @@ export const loadUser = async (req: AuthRequest, res: Response, next: NextFuncti
       return;
     }
 
-    let user = await User.findOne({ clerkId: userId });
+    const user = await User.findOne({ clerkId: userId });
     
     // If user doesn't exist in our DB yet, but they have a valid clerk session,
     // they might have just signed up. We could create them or wait for the webhook.

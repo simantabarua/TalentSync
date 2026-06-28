@@ -8,6 +8,8 @@ export interface IUser extends Document {
   image?: string;
   skills: string[];
   experience?: string;
+  bio?: string;
+  resumeUrl?: string;
   savedJobs: mongoose.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
@@ -22,6 +24,8 @@ const UserSchema = new Schema<IUser>(
     image: { type: String },
     skills: [{ type: String }],
     experience: { type: String },
+    bio: { type: String },
+    resumeUrl: { type: String },
     savedJobs: [{ type: Schema.Types.ObjectId, ref: 'Job' }],
   },
   { timestamps: true }

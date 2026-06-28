@@ -1,20 +1,32 @@
 import { Request, Response } from 'express';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { coverLetterPrompt, resumeMatchPrompt } from '../prompts/ai.prompts';
+import { User } from '../models/User';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 export const generateCoverLetter = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { jobTitle, company, skills, experience, tone } = req.body;
+    const { jobTitle, company, skills: reqSkills, experience: reqExperience, tone } = req.body;
     
     if (!jobTitle || !company) {
       res.status(400).json({ success: false, message: 'Missing required fields', errors: null });
       return;
     }
 
-    const prompt = coverLetterPrompt(jobTitle, company, skills, experience, tone);
+    let finalSkills = reqSkills;
+    let finalExperience = reqExperience;
+
+    if ((req as any).auth?.userId) {
+      const user = await User.findOne({ clerkId: (req as any).auth.userId });
+      if (user) {
+        finalSkills = user.skills?.join(', ') || finalSkills;
+        finalExperience = user.experience || finalExperience;
+      }
+    }
+
+    const prompt = coverLetterPrompt(jobTitle, company, finalSkills, finalExperience, tone);
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();

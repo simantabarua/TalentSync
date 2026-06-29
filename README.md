@@ -254,3 +254,13 @@ Directly deployed using the native Next.js build preset:
 2.  **Resume Parsing Engine**: Use Gemini to automatically parse uploaded PDF resumes to populate candidate skill profiles.
 3.  **Infinite Pagination**: Implement database cursors on `/api/v1/jobs` and integrate TanStack's `useInfiniteQuery` for job feeds.
 4.  **Admin/Employer Dashboard UI**: Build a dashboard interface for hiring managers to write listings, inspect candidates, and review AI scoring insights.
+
+---
+
+## 🔒 Security Guidelines (For Developers & AI Agents)
+
+To maintain strict security standards and prevent credentials exposure:
+*   **NEVER COMMIT ENVIRONMENT FILES**: Do not stage, commit, or push `.env`, `.env.local`, `.env.production`, or any file containing active API keys, Mongo URIs, or secrets.
+*   **GITIGNORE FORCE**: All environment files (`.env*`) must be listed in both local and global `.gitignore` patterns.
+*   **VERIFY BEFORE COMMIT**: Always inspect the changes using `git status` and `git diff --cached` before executing a commit to ensure no secrets are accidentally staged.
+*   **API KEY ROTATION**: If credentials are ever leaked to GitHub history, immediately change them on the respective provider dashboard (e.g. MongoDB Atlas, Clerk, Cloudinary).

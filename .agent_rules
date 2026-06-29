@@ -1,0 +1,12 @@
+# Project AI Agent Rules & Security Protocols
+
+To maintain database security, privacy, and prevent unauthorized credential exposure:
+
+## 1. Secrets & Environment Files (.env)
+*   **DO NOT STAGE OR COMMIT SENSITIVE FILES**: Never commit `.env`, `.env.local`, or any files containing private keys, access tokens, API credentials, or connection strings.
+*   **GIT IGNORE POLICY**: Ensure all environment configuration files are added to `.gitignore`.
+*   **PRE-COMMIT CHECKLIST**: Before committing changes, run `git diff --cached` to verify that no secret files or hardcoded credentials are included.
+
+## 2. API Keys & MongoDB Atlas
+*   If MongoDB Atlas or Clerk credentials are leaked, they must be changed on the dashboard immediately. 
+*   Always load API keys via `process.env`. Never hardcode them in backend or frontend source files.

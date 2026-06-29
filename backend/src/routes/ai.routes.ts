@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { generateCoverLetter, matchResume } from '../controllers/ai.controller';
-import { protect, loadUser } from '../middleware/auth.middleware';
+import { protect } from '../middleware/auth.middleware';
 
 const router = Router();
 
-router.post('/cover-letter', protect, loadUser, generateCoverLetter);
-router.post('/match-resume', protect, loadUser, matchResume);
+router.post('/cover-letter', protect, generateCoverLetter);
+router.post('/match-resume', protect, matchResume);
 
 export default router;

@@ -17,7 +17,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
     return {
-      folder: 'ai-job-finder/resumes',
+      folder: 'talentsync/resumes',
       format: 'pdf', // We will convert to PDF or keep original
       resource_type: 'raw', // Support non-image files like PDF, DOCX
       allowed_formats: ['pdf', 'doc', 'docx']

@@ -4,7 +4,7 @@ import { coverLetterPrompt, resumeMatchPrompt } from '../prompts/ai.prompts';
 import { User } from '../models/User';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+const model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
 
 export const generateCoverLetter = async (req: Request, res: Response): Promise<void> => {
   try {

@@ -1,0 +1,28 @@
+
+> frontend@0.1.0 lint
+> eslint
+
+
+/home/xsystem/Desktop/Project/ai-job-finder/frontend/src/app/profile/page.tsx
+   7:42  warning  'BriefcaseIcon' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   7:57  warning  'MapPinIcon' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  35:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/xsystem/Desktop/Project/ai-job-finder/frontend/src/app/profile/page.tsx:35:7
+  33 |   useEffect(() => {
+  34 |     if (profileData?.data) {
+> 35 |       setSkills(profileData.data.skills?.join(', ') || '');
+     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
+  36 |       setExperience(profileData.data.experience || '');
+  37 |       setBio(profileData.data.bio || '');
+  38 |     }  react-hooks/set-state-in-effect
+  85:14  warning  'error' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+
+✖ 4 problems (1 error, 3 warnings)
+

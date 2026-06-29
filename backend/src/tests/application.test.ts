@@ -1,12 +1,3 @@
-import request from 'supertest';
-import app from '../index';
-import { connectDB, dropDB, clearDB } from './setup';
-import { Job } from '../models/Job';
-import { Application } from '../models/Application';
-import { User } from '../models/User';
-import mongoose from 'mongoose';
-
-// Mock Clerk middleware
 jest.mock('@clerk/express', () => {
   return {
     requireAuth: () => (req: any, res: any, next: any) => {
@@ -18,6 +9,14 @@ jest.mock('@clerk/express', () => {
     }
   };
 });
+
+import request from 'supertest';
+import app from '../index';
+import { connectDB, dropDB, clearDB } from './setup';
+import { Job } from '../models/Job';
+import { Application } from '../models/Application';
+import { User } from '../models/User';
+import mongoose from 'mongoose';
 
 beforeAll(async () => {
   await connectDB();
@@ -135,5 +134,8 @@ describe('Application API Endpoints', () => {
     expect(response.body.success).toBe(true);
     expect(response.body.data.length).toBe(1);
     expect(response.body.data[0].coverLetter).toBe('Cover letter 123');
+    expect(response.body.data[0].job).toBeDefined();
+    expect(response.body.data[0].job.title).toBe('DevOps Engineer');
+    expect(response.body.data[0].jobId).toBeDefined();
   });
 });

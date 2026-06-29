@@ -15,7 +15,7 @@ const seedRoles = async () => {
 
   const demoUsers = [
     {
-      clerkId: 'user_demo_candidate',
+      clerkId: 'user_3FoNZr78ZNyADlG0nNg8zFMHkvP',
       name: 'Demo Candidate',
       email: 'candidate@talentsync.com',
       role: 'USER' as const,
@@ -23,7 +23,7 @@ const seedRoles = async () => {
       skills: ['React', 'Node.js', 'TypeScript', 'Express', 'MongoDB'],
     },
     {
-      clerkId: 'user_demo_manager',
+      clerkId: 'user_3FoNeMIRCK5kfcl0ekbr7aPHe4N',
       name: 'Demo Manager',
       email: 'manager@talentsync.com',
       role: 'MANAGER' as const,
@@ -31,7 +31,7 @@ const seedRoles = async () => {
       skills: ['Team Leadership', 'Agile', 'System Design'],
     },
     {
-      clerkId: 'user_demo_admin',
+      clerkId: 'user_3FoNiow0N36DqIhFrlQvpfTBfUH',
       name: 'Demo Admin',
       email: 'admin@talentsync.com',
       role: 'ADMIN' as const,

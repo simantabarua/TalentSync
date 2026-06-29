@@ -7,9 +7,10 @@ import { User } from '../models/User';
 export const applyForJob = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = (req as any).user;
+    const jobId = req.body.jobId || req.body.job;
     
     // Check if job exists
-    const job = await Job.findById(req.body.jobId);
+    const job = await Job.findById(jobId);
     if (!job) {
       res.status(404).json({ success: false, message: 'Job not found', errors: null });
       return;
@@ -28,6 +29,7 @@ export const applyForJob = async (req: Request, res: Response): Promise<void> =>
 
     const application = await Application.create({
       ...req.body,
+      jobId,
       userId: user._id,
     });
 
@@ -46,7 +48,15 @@ export const getMyApplications = async (req: Request, res: Response): Promise<vo
       .populate('jobId', 'title company location status jobType salary')
       .sort({ createdAt: -1 });
     
-    res.json({ success: true, data: applications, message: 'Applications fetched successfully', errors: null });
+    const mappedApplications = applications.map(app => {
+      const appObj = app.toObject();
+      return {
+        ...appObj,
+        job: appObj.jobId,
+      };
+    });
+    
+    res.json({ success: true, data: mappedApplications, message: 'Applications fetched successfully', errors: null });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error', errors: [{ message: (error as Error).message }] });
   }

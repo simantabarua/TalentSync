@@ -231,6 +231,35 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
+## 🗄️ Database Seeding & Mock Users
+
+To seed the database with mock roles, jobs, and applications for testing, use the built-in seed scripts.
+
+### Mock Accounts
+All mock users are configured in Clerk and database with the password: `3Flbr3KsXJmviqLZusYS6ZZi`
+
+1. **Candidate Account**:
+   * **Email**: `candidate@talentsync.com`
+   * **Role**: Candidate (`USER`)
+   * **Description**: Contains a pre-submitted job application for "Senior Frontend Developer" with a generated AI match score and cover letter.
+2. **Hiring Manager Account**:
+   * **Email**: `manager@talentsync.com`
+   * **Role**: Employer (`MANAGER`)
+   * **Description**: Pre-seeded with 3 mock job listings.
+3. **Super Admin Account**:
+   * **Email**: `admin@talentsync.com`
+   * **Role**: Admin (`ADMIN`)
+   * **Description**: Full administrative access.
+
+### Run Seeding
+To purge existing collections and reset the database to this baseline, execute:
+```bash
+cd backend
+npm run seed
+```
+
+---
+
 ## 🌐 Deployment (Vercel)
 
 Both applications are configured to deploy natively to Vercel as two isolated projects pointing to the same repository.

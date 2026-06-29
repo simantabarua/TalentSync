@@ -59,6 +59,32 @@ graph TD
 
 ---
 
+## 👥 User Roles & Access Control (RBAC)
+
+The application supports Role-Based Access Control (RBAC) with three primary roles defined in the schema: `USER` (Candidate), `MANAGER` (Employer), and `ADMIN` (Super Administrator).
+
+### 1. Candidate (`USER`)
+*   **Browse Jobs**: View all active job listings without authenticating.
+*   **Profile Setup**: Edit personal details, biography, technical skills, and experience summary.
+*   **Resume Upload**: Upload and store resumes securely on Cloudinary.
+*   **Apply for Jobs**: Initiate applications for any active listing, generating a personalized AI cover letter and match score.
+*   **Dashboard**: Track submission statuses (`Pending`, `Reviewed`, `Accepted`, `Rejected`) in real-time.
+*   *Restrictions*: Cannot post new jobs, edit other candidate profiles, or update application statuses.
+
+### 2. Employer (`MANAGER`)
+*   **Create Listings**: Post new job listings with descriptions, requirements, salary brackets, and required skills.
+*   **Manage Applications**: View all candidate applications submitted for their posted jobs.
+*   **AI Match Scoring**: Review the AI-generated compatibility scores (0-100) assessing candidates against requirements.
+*   **Status Management**: Update candidate application statuses (e.g., mark as `Reviewed`, `Accepted`, or `Rejected`).
+*   *Restrictions*: Cannot modify site-wide admin settings.
+
+### 3. Super Administrator (`ADMIN`)
+*   **Global Overview**: View and manage all users, job listings, and application records across the platform.
+*   **System Moderation**: Delete inappropriate listings or applications.
+*   **Role Management**: Modify user roles (promote a user to `MANAGER` or `ADMIN`).
+
+---
+
 ## 🗄️ Database Schemas & Models
 
 ```mermaid
